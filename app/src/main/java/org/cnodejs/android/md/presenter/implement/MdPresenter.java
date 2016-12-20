@@ -26,8 +26,7 @@ public class MdPresenter implements IMdPresenter {
 
     @Override
     public void getMdAsyncTask() {
-        ApiClient.service.getMdList(LoginShared.getAccessToken(activity), ApiDefine.MD_RENDER).enqueue(new DefaultCallback<Result.Data<Md>>(activity) {
-
+        ApiClient.service.getMdList(0,20,"his","").enqueue(new DefaultCallback<Result.Data<Md>>(activity) {
             @Override
             public boolean onResultOk(int code, Headers headers, Result.Data<Md> result) {
                 mdView.onGetMessagesOk(result.getData());
@@ -35,9 +34,7 @@ public class MdPresenter implements IMdPresenter {
             }
 
             @Override
-            public void onFinish() {
-                mdView.onGetTopicFinish();
-            }
+            public void onFinish() { mdView.onGetMdFinish();}
 
         });
     }

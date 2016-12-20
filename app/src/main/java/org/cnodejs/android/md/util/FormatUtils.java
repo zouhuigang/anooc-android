@@ -159,7 +159,7 @@ public final class FormatUtils {
         // 保证html不为null
         html = TextUtils.isEmpty(html) ? "" : html;
         // 过滤xss
-        Document document = cleaner.clean(Jsoup.parseBodyFragment(html, ApiDefine.HOST_BASE_URL));
+        Document document = cleaner.clean(Jsoup.parseBodyFragment(html, ApiDefine.WEB_ROOT));
         // 返回body
         return document.body().html();
     }

@@ -6,6 +6,6 @@ import org.cnodejs.android.md.model.entity.Md;
 
 public interface MdView {
     void onGetMessagesOk(@NonNull Md md);
-    void onGetTopicFinish();
+    void onGetMdFinish();
 
 }

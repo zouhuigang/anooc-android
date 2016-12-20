@@ -24,6 +24,9 @@ import org.cnodejs.android.md.model.storage.LoginShared;
 import org.cnodejs.android.md.model.storage.SettingShared;
 import org.cnodejs.android.md.presenter.contract.IMainPresenter;
 import org.cnodejs.android.md.presenter.implement.MainPresenter;
+
+import org.cnodejs.android.md.presenter.implement.MdPresenter;
+import org.cnodejs.android.md.presenter.contract.IMdPresenter;
 import org.cnodejs.android.md.ui.adapter.TopicListAdapter;
 import org.cnodejs.android.md.ui.base.FullLayoutActivity;
 import org.cnodejs.android.md.ui.dialog.AlertDialogUtils;
@@ -113,22 +116,30 @@ public class MainActivity extends FullLayoutActivity implements IMainView, IBack
 
     // 是否启用夜间模式
     private boolean enableThemeDark;
-
+    private IMdPresenter mdPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         enableThemeDark = ThemeUtils.configThemeBeforeOnCreate(this, R.style.AppThemeLight_FitsStatusBar, R.style.AppThemeDark_FitsStatusBar);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_main);  //展示出主界面
+        ButterKnife.bind(this); //Butter Knife 会自动在布局中查找相应的视图 代码通过执行视图查找，来取代速度较慢的反射
 
-        drawerLayout.setDrawerShadow(R.drawable.navigation_drawer_shadow, GravityCompat.START);
+        drawerLayout.setDrawerShadow(R.drawable.navigation_drawer_shadow, GravityCompat.START); //设置一个定制的影子覆盖时的主要内容的抽屉里
         drawerLayout.addDrawerListener(drawerListener);
         toolbar.setNavigationOnClickListener(new NavigationOpenClickListener(drawerLayout));
         toolbar.setOnClickListener(new DoubleClickBackToContentTopListener(this));
 
         loadMoreFooter = new LoadMoreFooter(this, listView, this);
+
+        //主题
         adapter = new TopicListAdapter(this);
         listView.setAdapter(adapter);
+
+        //云笔记
+        // mdadapter = new MdlistAdapter(this);
+        //listView.setAdapter(mdadapter);
+
+
         fabCreateTopic.attachToListView(listView);
 
         mainPresenter = new MainPresenter(this, this);
@@ -214,8 +225,7 @@ public class MainActivity extends FullLayoutActivity implements IMainView, IBack
             R.id.btn_nav_good,
             R.id.btn_nav_share,
             R.id.btn_nav_ask,
-            R.id.btn_nav_job,
-            R.id.btn_nav_cloud_note
+            R.id.btn_nav_job
     })
     public void onNavigationMainItemClick(CheckedTextView itemView) {
         for (CheckedTextView navItem : navMainItemList) {
@@ -224,7 +234,6 @@ public class MainActivity extends FullLayoutActivity implements IMainView, IBack
             //ToastUtils.with(this);
             //System.out.println("打印出值...");
         }
-        //mdPresenter = new MdPresenter(this, this);
         drawerLayout.closeDrawers();
     }
 
@@ -304,6 +313,13 @@ public class MainActivity extends FullLayoutActivity implements IMainView, IBack
                 .show();
     }
 
+    /*
+    * 云笔记
+    * */
+    @OnClick(R.id.btn_nav_cloud_note)
+    protected void onBtnCloudNoteClick(){
+        startActivity(new Intent(this, MdActivity.class));
+    }
 
     /**
      * 主题按钮

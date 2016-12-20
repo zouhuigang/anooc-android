@@ -129,12 +129,14 @@ public interface ApiService {
 
 
     //=========
-    // 云笔记
+    // 云笔记 http://www.anooc.com/api/anote/list?recoid=62&count=20&method=his&kw=
     //=========
-    @GET("md/list")
+    @GET("anote/list")
     Call<Result.Data<Md>> getMdList(
-            @Query("access") String accessToken,
-            @Query("mdrender") Boolean mdrender
+            @Query("recoid") Integer recoid,
+            @Query("count") Integer count,
+            @Query("method") String method,
+            @Query("kw") String kw
     );
 
 }
