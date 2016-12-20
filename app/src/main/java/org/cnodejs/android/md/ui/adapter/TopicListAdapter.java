@@ -108,6 +108,7 @@ public class TopicListAdapter extends BaseAdapter {
         protected void update(@NonNull Topic topic) {
             this.topic = topic;
 
+
             tvTitle.setText(topic.getTitle());
             ctvTab.setText(topic.isTop() ? R.string.tab_top : topic.getTab().getNameId());
             ctvTab.setChecked(topic.isTop());
