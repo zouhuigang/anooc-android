@@ -12,6 +12,7 @@ import org.cnodejs.android.md.presenter.contract.IMdPresenter;
 import org.cnodejs.android.md.presenter.implement.MdPresenter;
 import org.cnodejs.android.md.ui.adapter.MdAdapter;
 
+import org.cnodejs.android.md.ui.adapter.ReplyListAdapter;
 import org.cnodejs.android.md.ui.base.StatusBarActivity;
 
 import org.cnodejs.android.md.ui.util.RefreshUtils;
@@ -37,9 +38,10 @@ public class MdActivity extends StatusBarActivity implements MdView, SwipeRefres
 
     //数据
 
-     private MdList list=new MdList();
+    //private MdList list=new MdList();
     private IMdPresenter imdPresenter;
     private MdAdapter adapter;
+    private MdView mdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,18 +49,25 @@ public class MdActivity extends StatusBarActivity implements MdView, SwipeRefres
         ButterKnife.bind(this);
 
         imdPresenter = new MdPresenter(this, this);
+
+        //new视图数据
+        adapter = new MdAdapter(this);
+        listView.setAdapter(adapter);
+
         RefreshUtils.init(refreshLayout, this);
         RefreshUtils.refresh(refreshLayout, this);
     }
 
     //请求网络之后,得到数据，然后通过adapter绑定视图数据
     @Override
-    public void onGetMdDataOk(@NonNull List<Md> mdList){//会不断的请求网络地址
-        //this.list=list;
-        //this.mdList=mdList;
-        //adapter=new MdAdapter(this,list.getList());
+    public void onGetMdDataOk(@NonNull MdList mdList){//会不断的请求网络地址
+        //adapter=new MdAdapter(this);
+        //adapter.getMdList().clear();
         //listView.setAdapter(adapter);
-        adapter.getMdList().addAll(mdList);
+        System.out.println("mdlist size===="+mdList.getList().size());
+        adapter.getMdList().clear();
+        adapter.getMdList().addAll(mdList.getList());
+        System.out.println("改变了多少个值"+adapter.getCount());
         adapter.notifyDataSetChanged();
     }
 

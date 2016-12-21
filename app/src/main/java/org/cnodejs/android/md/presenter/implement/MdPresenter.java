@@ -5,11 +5,12 @@ import android.support.annotation.NonNull;
 
 import org.cnodejs.android.md.model.api.ApiClient;
 
-import org.cnodejs.android.md.model.api.DefaultCallback;
+import org.cnodejs.android.md.model.api.ReturnJsonCallBack;
 import org.cnodejs.android.md.model.entity.Md;
-import org.cnodejs.android.md.model.entity.Result;
 
 
+import org.cnodejs.android.md.model.entity.MdList;
+import org.cnodejs.android.md.model.entity.ReturnJson;
 import org.cnodejs.android.md.presenter.contract.IMdPresenter;
 import org.cnodejs.android.md.ui.view.MdView;
 
@@ -29,9 +30,9 @@ public class MdPresenter implements IMdPresenter {
 
     @Override
     public void getMdAsyncTask() {
-        ApiClient.service.getMdList(0,20,"his","").enqueue(new DefaultCallback<Result.Data<List<Md>>>(activity) {
+        ApiClient.service.getMdList(0,20,"his","").enqueue(new ReturnJsonCallBack<ReturnJson.Data<MdList>>(activity) {
             @Override
-            public boolean onResultOk(int code, Headers headers, Result.Data<List<Md>> result) {
+            public boolean onResultOk(int code, Headers headers, ReturnJson.Data<MdList> result) {
                 mdView.onGetMdDataOk(result.getData());
                 return false;
             }

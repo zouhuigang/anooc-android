@@ -6,9 +6,34 @@ import org.cnodejs.android.md.model.api.ApiDefine;
 import org.cnodejs.android.md.util.FormatUtils;
 import org.joda.time.DateTime;
 
+/*
+*返回的json数据:
+* {
+    "success": true,
+    "data": [
+        {
+            "id": "581b0c4ebb9452c9052e7acb",
+            "author_id": "5110f2bedf9e9fcc584e4677",
+            "tab": "share",
+            "content": "",
+            "title": "《一起学 Node.js》彻底重写完毕",
+            "last_reply_at": "2016-12-15T09:36:34.227Z",
+            "good": false,
+            "top": true,
+            "reply_count": 133,
+            "visit_count": 29193,
+            "create_at": "2016-11-03T10:07:10.155Z",
+            "author": {
+                "loginname": "nswbmw",
+                "avatar_url": "https://avatars.githubusercontent.com/u/4279697?v=3&s=120"
+            }
+        },
+        ....
+* */
+
 public class Topic extends TopicSimple {
 
-    @SerializedName("author_id")
+    @SerializedName("author_id")  //相当于Golang的重命名结构体
     private String authorId;
 
     private TabType tab;
@@ -100,7 +125,7 @@ public class Topic extends TopicSimple {
     @SerializedName("content_html")
     private String contentHtml;
 
-    public String getContentHtml() {
+    public String getContentHtml() { //处理数据
         if (contentHtml == null) {
             if (ApiDefine.MD_RENDER) {
                 contentHtml = FormatUtils.handleHtml(content);

@@ -1,7 +1,9 @@
 package org.cnodejs.android.md.model.api;
 
+import org.cnodejs.android.md.model.entity.MdList;
 import org.cnodejs.android.md.model.entity.Notification;
 import org.cnodejs.android.md.model.entity.Result;
+import org.cnodejs.android.md.model.entity.ReturnJson;
 import org.cnodejs.android.md.model.entity.TabType;
 import org.cnodejs.android.md.model.entity.Topic;
 import org.cnodejs.android.md.model.entity.TopicWithReply;
@@ -132,7 +134,7 @@ public interface ApiService {
     // 云笔记 http://www.anooc.com/api/anote/list?recoid=62&count=20&method=his&kw=
     //=========
     @GET("anote/list")
-    Call<Result.Data<List<Md>>> getMdList(
+    Call<ReturnJson.Data<MdList>> getMdList(
             @Query("recoid") Integer recoid,
             @Query("count") Integer count,
             @Query("method") String method,
