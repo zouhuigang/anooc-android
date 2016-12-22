@@ -16,7 +16,7 @@ android {
     buildToolsVersion "24.0.3"
 
     defaultConfig {
-        applicationId "org.cnodejs.android.md"
+        applicationId "com.anooc.android.md"
         minSdkVersion 9
         targetSdkVersion 24
         versionCode Integer.parseInt(new Date().format("yyyyMMdd"))

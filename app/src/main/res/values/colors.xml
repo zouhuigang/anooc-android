@@ -3,7 +3,7 @@
 
     <color name="color_primary">#ff333333</color>
     <color name="color_primary_dark">#ff222222</color>
-    <color name="color_accent">#ff80bd01</color>
+    <color name="color_accent">#ffff8400</color>
 
     <color name="window_background_light">#ffeeeeee</color>
     <color name="window_background_dark">#ff303030</color>
@@ -29,7 +29,7 @@
     <color name="selectable_item_background_general_ripple_dark">#ff666666</color>
 
     <color name="button_normal">@color/color_accent</color>
-    <color name="button_pressed">#ff48bd06</color>
+    <color name="button_pressed">#ffff8400</color>
     <color name="button_ripple">#99ffffff</color>
     <color name="button_stroke_normal">#ffffffff</color>
     <color name="button_stroke_pressed">#ffeeeeee</color>

@@ -2,9 +2,8 @@
 <resources>
 
     <string name="app_name">安橙网</string>
-
     <string name="logo_url">anooc.com</string>
-    <string name="logo_slogan">最新,最热门,最好玩的云笔记平台_安橙网</string>
+    <string name="logo_slogan">最新,最热门,最好玩的云笔记平台</string>
 
     <string name="tab_top">置顶</string>
     <string name="tab_all">全部</string>

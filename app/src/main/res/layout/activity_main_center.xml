@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <org.cnodejs.android.md.ui.widget.ListView
+            <com.anooc.android.md.ui.widget.ListView
                 android:id="@+id/list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -57,7 +57,8 @@
             android:src="@drawable/ic_mode_edit_white_24dp"
             app:fab_colorNormal="@color/button_normal"
             app:fab_colorPressed="@color/button_pressed"
-            app:fab_colorRipple="@color/button_ripple" />
+            app:fab_colorRipple="@color/button_ripple"
+            />
 
     </FrameLayout>
 

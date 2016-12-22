@@ -7,6 +7,7 @@ android:background="?attr/widgetBackground"
 android:orientation="vertical">
 
 <LinearLayout
+    android:id="@+id/btn_md_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
